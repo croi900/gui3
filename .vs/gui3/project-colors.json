@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "fd89977c-e9c0-980d-92ad-7e107ec3140f": {
+      "ProjectGuid": "fd89977c-e9c0-980d-92ad-7e107ec3140f",
+      "DisplayName": "gui3",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

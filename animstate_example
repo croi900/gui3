@@ -1,0 +1,42 @@
+// AnimState tg(s.get_w(),s.get_h(),330, 330, s.get_pixel_width());
+// 	auto lp = s.paint;
+// 	s.reset_internal_clock();
+// 	s.paint = [tg](Surface * sf){
+// 		f64 clk = sf->get_internal_clock();
+// 		for(int y = 0; y < sf->get_h(); y++)
+//         {
+//             for(int x = 0; x < sf->get_w(); x++)
+//             {
+                
+//                 sf->get_dcomp()->pixel(x,y,ORANGE);
+                
+//             }
+//         }
+
+//         for(int y = 1; y <= sf->get_h(); ++y)
+//         {
+//             for(int x = 1; x <= sf->get_w(); ++x)
+//             {
+// 				auto p = pdraw::cubic_bezier_offset(sf->get_x(),sf->get_y(),
+//                                     sf->get_x()+300 + 50*db::perlin(0.1*clk*(1)),
+// 									sf->get_y()+  0 + 50*db::perlin(0.2*clk*(1)),
+//                                     sf->get_x()+300 - 50*db::perlin(0.3*clk*(1)),
+// 									sf->get_y()+300 - 50*db::perlin(0.4*clk*(1)),
+// 									// sf->get_y()-1.0*y*y*offset_function(0.41*x,0.1*x,0.1*x,0.2*y,0.3*y,0.2*y,1*clamp(0.0,1.0,sf->get_internal_clock())),
+//                                     GetMouseX(),GetMouseY(),clamp(0,1,clk + sin((1.0*(y+x) * sf->get_w() + x + 10)/(1.0*sf->get_h()*sf->get_w())*clk/2) )); //
+                
+// 				DrawRectangle(
+// 					sf->get_pixel_width() * (x-1) + p.first , //+
+// 					sf->get_pixel_width() * (y-1) + p.second, //+
+// 					//offset_function(0.41*x,0.1*x,0.1*x,0.2*y,0.3*y,0.2*y,1*clamp(0.0,1.0,sf->get_internal_clock())),
+// 					sf->get_pixel_width(),sf->get_pixel_width(),
+// 					sf->at(x-1,y-1));
+			
+// 			}
+//         }
+
+// 		if(clamp(0,1,clk + sin((1.0*(0) * sf->get_w() + 0 + 10)/(1.0*sf->get_h()*sf->get_w())*clk/2)) >= 1){
+// 			sf->set_pos(GetMouseX(),GetMouseY());
+// 		}
+// 		// printf("%lf\n",db::perlin(clk));
+// 	};
