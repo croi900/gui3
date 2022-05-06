@@ -80,30 +80,9 @@ InputBox<T>::InputBox(u32 x, u32 y, u32 w, u32 h) : Surface(x, y, w, h){
         float vy = (sf->get_y() + (sf->get_h()*1. * sf->get_pixel_width()*1. - th)/2);
         Vector2 v = {vx, vy};
         DrawTextEx(GetFontDefault(),this->text,v,sf->get_h() * sf->get_pixel_width() * 0.4,2,BLACK);
-        //DrawText(this->text,0,0,64,BLACK);
-        /*LOGIC THAT SHOULD BE PLACED SOMEWHERE ELSE NOT IN PAINT */
-        if(this->selected == true && IsKeyPressed(KEY_ENTER)){
-            this->selected = false;
-        }
         
-        if(this->selected == true){
-            if(chr >= 32)
-            {
-                this->text[pos++] = chr;
-                this->text[pos] = 0;
-            } 
-            if(IsKeyDown(KEY_BACKSPACE) && clk > bsclk && pos > 0)
-            {
-                this->text[--pos] = 0;
-                bsclk = clk + 0.06;
-            }
-        }
-
-        try{
-            std::cout<<this->get()<<std::endl;
-        }catch(...){
-
-        }
+    
+        this->internal_think();
     };
 
     this->on_mouse_left = [this](Surface*, u32, u32){
@@ -112,9 +91,41 @@ InputBox<T>::InputBox(u32 x, u32 y, u32 w, u32 h) : Surface(x, y, w, h){
 
     
 }
+template <class T>
+void InputBox<T>::internal_think(){
+    if(this->selected == true && IsKeyPressed(KEY_ENTER)){
+        this->selected = false;
+    }
+    
+    if(this->selected == true){
+        if(chr >= 32)
+        {
+            this->text[pos++] = chr;
+            this->text[pos] = 0;
+        } 
+        if(IsKeyDown(KEY_BACKSPACE) && clk > bsclk && pos > 0)
+        {
+            this->text[--pos] = 0;
+            bsclk = clk + 0.06;
+        }
+    }
 
+    try{
+        std::cout<<this->get()<<std::endl;
+    }catch(...){
+
+    }
+}
 template <class T>
 T InputBox<T>::get(){
+    if(std::is_same<T,std::string>())
+    {
+        std::string val;
+        std::istringstream ss(this->text);
+        std::getline(ss,val);
+        return val;
+    }
+
     T val;
     std::istringstream ss(this->text);
     ss>>val;
