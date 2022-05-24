@@ -16,11 +16,11 @@ template <class T>
 class InputBox : public Surface{
 private:
     bool selected = false;
-    char text[1024];
+    char text[1024] = {0};
     int pos = 0;
     float bsclk;
     
-    void internal_think();
+    void internal_think(float clk, char chr);
 public:
 
     void draw();
@@ -41,8 +41,7 @@ InputBox<T>::InputBox(u32 x, u32 y, u32 w, u32 h) : Surface(x, y, w, h){
         float clk = sf->get_dcomp()->clk;
         int mx = GetMouseX();
         int my = GetMouseY();
-        char chr = (char)GetCharPressed();
-
+        char chr = next_char();
         sf->get_dcomp()->octogon(0,0,sf->get_w(),sf->get_h(),0.11,RGB(32,32,32));
 
         if( this->selected )
@@ -82,7 +81,7 @@ InputBox<T>::InputBox(u32 x, u32 y, u32 w, u32 h) : Surface(x, y, w, h){
         DrawTextEx(GetFontDefault(),this->text,v,sf->get_h() * sf->get_pixel_width() * 0.4,2,BLACK);
         
     
-        this->internal_think();
+        this->internal_think(clk,chr);
     };
 
     this->on_mouse_left = [this](Surface*, u32, u32){
@@ -92,8 +91,16 @@ InputBox<T>::InputBox(u32 x, u32 y, u32 w, u32 h) : Surface(x, y, w, h){
     
 }
 template <class T>
-void InputBox<T>::internal_think(){
+void InputBox<T>::internal_think(float clk,char chr){
     if(this->selected == true && IsKeyPressed(KEY_ENTER)){
+        this->selected = false;
+    }
+    int mx = GetMouseX();
+    int my = GetMouseY();
+    if(this->selected && IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && !(mx <= this->get_x() + this->get_w() * this->get_pixel_width() && 
+            my <= this->get_y() + this->get_h() * this->get_pixel_width() && 
+            mx >= this->get_x() && my >= this->get_y() ))
+    {
         this->selected = false;
     }
     
@@ -109,16 +116,11 @@ void InputBox<T>::internal_think(){
             bsclk = clk + 0.06;
         }
     }
-
-    try{
-        std::cout<<this->get()<<std::endl;
-    }catch(...){
-
-    }
 }
 template <class T>
 T InputBox<T>::get(){
-    if(std::is_same<T,std::string>())
+
+    if constexpr(std::is_same_v<T,std::string>)
     {
         std::string val;
         std::istringstream ss(this->text);
@@ -130,4 +132,5 @@ T InputBox<T>::get(){
     std::istringstream ss(this->text);
     ss>>val;
     return val;
+    
 }

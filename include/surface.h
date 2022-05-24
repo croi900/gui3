@@ -68,10 +68,10 @@ public:
     std::function<void(AnimState & tg, u32, u32, u32, u32, u32)> anim_paint;// x,y,w,h,sz
 
 
-    std::function<void(Surface*, u32, u32)> on_mouse_left;
-    std::function<void(Surface*, u32, u32)> on_mouse_right;
-    std::function<void(Surface*, u32, u32)> on_mouse_wheel_pressed;
-    std::function<void(Surface*, float)> on_mouse_wheel;
+    std::function<void(Surface*, u32, u32)> on_mouse_left = [](Surface*, u32, u32){};
+    std::function<void(Surface*, u32, u32)> on_mouse_right = [](Surface*, u32, u32){};
+    std::function<void(Surface*, u32, u32)> on_mouse_wheel_pressed = [](Surface*, u32, u32){};
+    std::function<void(Surface*, float)> on_mouse_wheel = [](Surface*, float){};
 
     void draw();
     void animate(AnimState&);
@@ -202,4 +202,16 @@ void Surface::reset_internal_clock(){
 void Surface::set_pos(u32 x, u32 y){
     this->pos_x = x;
     this->pos_y = y;
+}
+
+static char pressed_char;
+
+char next_char()
+{
+    return pressed_char;
+}
+
+void update_char()
+{
+    pressed_char = (char)GetCharPressed();
 }

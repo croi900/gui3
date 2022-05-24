@@ -36,14 +36,16 @@ int main ()
 		// drawing
 		BeginDrawing();
 		ClearBackground(BLACK);
-
+		
+		update_char();
 		background->draw();
+
 		if(c_pg == "menu")
 			pdraw::draw_title("VIATA LUI ADELIN");
 
 		page[c_pg]->manage_drawing();
 		page[c_pg]->manage_mouse();
-	
+		
 		EndDrawing();
 	}
 

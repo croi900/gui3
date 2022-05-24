@@ -2,6 +2,7 @@
 
 #include <unordered_map>
 #include <algorithm>
+#include <functional>
 #include <string>
 #include "surface.h"
 #include "raylib.h"
@@ -18,6 +19,8 @@ public:
     void add_surface(const std::string & name, Surface * sf);
     void rem_surface(std::string const& idx);
     void rem_surface(Surface * sf);
+
+    std::function<void()> page_draw = [](){};
 
     void manage_mouse();
     void manage_drawing();
@@ -138,6 +141,8 @@ void Manager::manage_drawing()
         auto sf = pair.second;
         sf->draw();
     }
+
+    this->page_draw();
 }
 
 u32 Manager::get_size()

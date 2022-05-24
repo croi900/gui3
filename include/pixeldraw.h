@@ -7,25 +7,12 @@
 #include <cstdio>
 #include "raylib.h"
 #include "surface.h"
-
+#include "drawcomponent.h"
 
 typedef uint32_t u32;
 typedef double f64;
 
-template<typename T> constexpr
-T min(T const& a, T const& b) {
-  return a < b ? a : b;
-}
 
-template<typename T> constexpr
-T max(T const& a, T const& b) {
-  return a > b ? a : b;
-}
-
-template<typename T> constexpr
-T clamp(T const& a, T const& b, T const& x) {
-  return max(min(x,b),a);
-}
 
 namespace pdraw{
     f64 distance(f64 x1, f64 y1, f64 x2, f64 y2){
@@ -81,6 +68,30 @@ namespace pdraw{
         DrawText(title,GetScreenWidth()/2 - tw/2,
                     GetScreenHeight()/16,
                     120,BLACK);
+    }
+
+    bool intersecting(float p0_x, float p0_y, float p1_x, float p1_y, 
+    float p2_x, float p2_y, float p3_x, float p3_y, float *i_x, float *i_y)
+    {
+        float s1_x, s1_y, s2_x, s2_y;
+        s1_x = p1_x - p0_x;     s1_y = p1_y - p0_y;
+        s2_x = p3_x - p2_x;     s2_y = p3_y - p2_y;
+
+        float s, t;
+        s = (-s1_y * (p0_x - p2_x) + s1_x * (p0_y - p2_y)) / (-s2_x * s1_y + s1_x * s2_y);
+        t = ( s2_x * (p0_y - p2_y) - s2_y * (p0_x - p2_x)) / (-s2_x * s1_y + s1_x * s2_y);
+
+        if (s >= 0 && s <= 1 && t >= 0 && t <= 1)
+        {
+            // Collision detected
+            if (i_x != NULL)
+                *i_x = p0_x + (t * s1_x);
+            if (i_y != NULL)
+                *i_y = p0_y + (t * s1_y);
+            return 1;
+        }
+
+        return 0; // No collision
     }
 
 }
