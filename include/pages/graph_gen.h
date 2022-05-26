@@ -26,8 +26,8 @@ void init_graph_gen(){
     page["graph_gen"]->add_surface("tbx_graph_divison", input_div);
 
     auto input_muchii = new InputBox<u32>(GetScreenWidth() - 120*4 - GetScreenWidth()/16,
-                                    GetScreenHeight() * 0.15 + 120,120,20);
-    page["graph_gen"]->add_surface("tbx_graph_edges", input_div);
+                                    GetScreenHeight() * 0.15 + 240,120,20);
+    page["graph_gen"]->add_surface("tbx_graph_edges", input_muchii);
 
     auto button = new Button(GetScreenWidth() - 120*4 - GetScreenWidth()/16,
                         GetScreenHeight() * 0.85,120,20,"GENERAZA",[digraph,input,input_div](){

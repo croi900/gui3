@@ -19,13 +19,14 @@
 #define NODE_RANGE 8
 #define EDGE_RANGE 8
 
+
 static float r;
 
 struct gpoint {
     u32 x, y;
     //RELATION OF EQUALITY BY DISTANCE
     bool operator==(gpoint other){
-        return ((x - other.x)*(x - other.x) + (y - other.y)*(y - other.y)) < (2*(r/2-NODE_RANGE))*(2*(r/2-NODE_RANGE));
+        return ((x - other.x)*(x - other.x) + (y - other.y)*(y - other.y)) < (2*(r/2-NODE_RANGE+2))*(2*(r/2-NODE_RANGE+2));
     }
 };
 
@@ -141,7 +142,7 @@ void DiGraph::gen_point_ring(gpoint & p, std::queue<gpoint>& q)
     float t = 0;
     
 
-    for(float t = 0; t <= 2 * M_PI; t += 2*M_PI/GRAPH_DIVISION)
+    for(float t = 0; t <= 2 * 3.14; t += 2*3.14/GRAPH_DIVISION)
     {
         r = this->get_w() / (sqrt(this->n) * (2));
         float i = t;//+ (100.0 - rand()%200)/100.0;

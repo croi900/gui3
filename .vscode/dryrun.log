@@ -1,8 +1,7 @@
 make.exe --dry-run --always-make --keep-going --print-directory
 makefile:14: Extraneous text after `else' directive
+makefile:17: *** only one `else' per conditional.  Stop.
 
 make.exe: Entering directory `c:/code/cpp/gui3'
 make.exe: Leaving directory `c:/code/cpp/gui3'
  
-makefile:17: *** only one `else' per conditional.  Stop.
-
