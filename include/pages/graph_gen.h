@@ -33,6 +33,7 @@ void init_graph_gen(){
                         GetScreenHeight() * 0.85,120,20,"GENERAZA",[digraph,input,input_div](){
         digraph->set_n(input->get());
         digraph->set_division(input_div->get());
+        digraph->set_m(input_muchii->get());
 		digraph->regenerate();
 	});
 	page["graph_gen"]->add_surface("btn_generate",button);

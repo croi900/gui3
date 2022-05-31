@@ -189,7 +189,7 @@ void DiGraph::gen_lattice()
         graph.push_back(pt);
     }
     gpoint cp;
-    while(queue.size() > 0 ){
+    while(queue.size() > 0){
         cp = queue.front();
         queue.pop();
         this->gen_point_ring(cp,queue);
@@ -204,6 +204,16 @@ void DiGraph::regenerate()
     this->gen_lattice();
 
     std::cout<<edges.size()<<std::endl;
+
+    while(edges.size() > this->m){
+        edges.erase(edges.begin()+(rand() % edges.size()));
+    }
+    while(edges.size() < this->m){
+        edges.psuh_back({
+            *(graph.begin()+(rand() % graph.size())),
+            {p.x + off_x, p.y + off_y}
+        });
+    }
 }
 
 
