@@ -36,6 +36,7 @@
         "cctype": "cpp",
         "string": "cpp",
         "map": "cpp",
-        "xtree": "cpp"
+        "xtree": "cpp",
+        "ostream": "cpp"
     }
 }

@@ -15,7 +15,7 @@
 #include <random>
 #define DRAW_LATTICE 1
 #define LATTICE_LIMIT 4
-
+#define ATTEMPTS_MAX 1000
 #define NODE_RANGE 8
 #define EDGE_RANGE 8
 
@@ -70,7 +70,7 @@ int cnt = 0;
 
 bool DiGraph::condition()
 {
-    return rand()%100 > 66;
+    return rand()%100 > 33;
 }
 DiGraph::DiGraph(u32 x, u32 y, u32 w, u32 h) : Surface(x, y, w, h){
     this->n = 50;
@@ -199,21 +199,24 @@ void DiGraph::gen_lattice()
 
 void DiGraph::regenerate()
 {
+
     this->graph.clear();
     this->edges.clear();
     this->gen_lattice();
 
-    std::cout<<edges.size()<<std::endl;
 
     while(edges.size() > this->m){
         edges.erase(edges.begin()+(rand() % edges.size()));
     }
     while(edges.size() < this->m){
-        edges.psuh_back({
+        edges.push_back({
             *(graph.begin()+(rand() % graph.size())),
-            {p.x + off_x, p.y + off_y}
-        });
+            *(graph.begin()+(rand() % graph.size()))}
+        );
     }
+    std::cout<<graph.size()<<" "<<edges.size()<<std::endl;
+
+    
 }
 
 
