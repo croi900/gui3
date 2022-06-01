@@ -37,6 +37,23 @@
         "string": "cpp",
         "map": "cpp",
         "xtree": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "clocale": "cpp",
+        "deque": "cpp",
+        "ios": "cpp",
+        "iostream": "cpp",
+        "istream": "cpp",
+        "iterator": "cpp",
+        "queue": "cpp",
+        "random": "cpp",
+        "sstream": "cpp",
+        "stdexcept": "cpp",
+        "streambuf": "cpp",
+        "system_error": "cpp",
+        "xfacet": "cpp",
+        "xiosbase": "cpp",
+        "xlocale": "cpp",
+        "xlocinfo": "cpp",
+        "xlocnum": "cpp"
     }
 }

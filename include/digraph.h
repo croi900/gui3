@@ -18,7 +18,9 @@
 #define ATTEMPTS_MAX 1000
 #define NODE_RANGE 8
 #define EDGE_RANGE 8
+#define MAX_NODES 100
 
+#define USE_ADJACENCY 1
 
 static float r;
 
@@ -33,15 +35,20 @@ struct gpoint {
 class DiGraph : public Surface{
 private:
     u32 GRAPH_DIVISION = 12;
-    u32 n,m,a[200][200];
+    u32 n,m;
 
     std::vector<gpoint> lattice;
 
     std::vector<std::pair<gpoint,gpoint>> edges;
     std::vector<gpoint> graph;
 
+#ifdef USE_ADJACENCY
+    int a[MAX_NODES + 1][MAX_NODES+ 1];
+#endif
+
     void gen_point_ring(gpoint & p, std::queue<gpoint>& q);
     void gen_lattice();
+    void gen_adjacency();
 
     float zoom;
 
@@ -216,7 +223,19 @@ void DiGraph::regenerate()
     }
     std::cout<<graph.size()<<" "<<edges.size()<<std::endl;
 
-    
+    gen_adjacency();
 }
 
 
+void DiGraph::gen_adjacency(){
+    for(auto & edge : this->edges){
+        int n1 = std::find(this->graph.begin(),
+            this->graph.end(), edge.first) - this->graph.begin() + 1;
+        int n2 = std::find(this->graph.begin(),
+            this->graph.end(), edge.second) - this->graph.begin() + 1;
+
+        std::cout<<n1<<" "<<n2<<std::endl;
+
+        a[n1][n2] = rand()%100 + 1;
+    }
+}

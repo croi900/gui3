@@ -9,7 +9,7 @@ makefile:14: Extraneous text after `else' directive
 makefile:17: *** only one `else' per conditional.  Stop.
 
 
-# Make data base, printed on Tue May 31 23:55:45 2022
+# Make data base, printed on Wed Jun 01 23:06:32 2022
 
 # Variables
 
@@ -60,7 +60,7 @@ PROGRAMW6432 = C:\Program Files
 # environment
 PROGRAMDATA = C:\ProgramData
 # environment
-VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-2d3c9e50-dc77-4e99-afbc-56d7cea8e934-sock
+VSCODE_IPC_HOOK_EXTHOST = \\.\pipe\vscode-ipc-f933aa46-5d82-4346-9c7e-e04b3f4e3053-sock
 # environment
 VSCODE_CWD = C:\Users\croi\AppData\Local\Programs\Microsoft VS Code
 # environment
@@ -90,7 +90,7 @@ ELECTRON_RUN_AS_NODE = 1
 # makefile (from `makefile', line 12)
 gui3_config = debug
 # environment
-CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_10928_OXSXRDRBVYGQOFEV
+CHROME_CRASHPAD_PIPE_NAME = \\.\pipe\crashpad_14404_JSDCLJZDJGEDDYLT
 # environment
 VSCODE_PIPE_LOGGING = true
 # environment
@@ -198,7 +198,7 @@ LANG = C
 # environment
 PROCESSOR_LEVEL = 23
 # environment
-VSCODE_PID = 10928
+VSCODE_PID = 14404
 # environment
 USERDOMAIN_ROAMINGPROFILE = DESKTOP-H81847P
 # variable set hash-table stats:
@@ -281,6 +281,6 @@ makefile:
 
 # No general (`VPATH' variable) search path.
 
-# Finished Make data base on Tue May 31 23:55:45 2022
+# Finished Make data base on Wed Jun 01 23:06:32 2022
 
  
