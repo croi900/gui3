@@ -28,6 +28,7 @@ public:
     u32 get_size();
 
     Surface* operator[](const std::string & name) { return surfaces[name]; }
+    Surface* get(const std::string & name) { return surfaces[name]; }
 };
 
 Manager::Manager(/* args */)
@@ -138,11 +139,12 @@ void Manager::manage_drawing()
 {
     for(const auto & pair : this->surfaces)
     {
+        if(nullptr == pair.second) continue;
         auto sf = pair.second;
         sf->draw();
     }
 
-    this->page_draw();
+    //this->page_draw();
 }
 
 u32 Manager::get_size()

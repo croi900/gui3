@@ -7,8 +7,7 @@
 #include "manager.h"
 #include "button.h"
 #include "perlin.h"
-#include "pages/menu.h"
-#include "pages/graph_gen.h"
+#include "pages/pg_main.h"
 //animation data point
 
 
@@ -24,10 +23,8 @@ int main ()
 	// set up the window
 	InitWindow(1280, 800, "WINDOW");
 	// page[0] = new Manager();
-
-
 	init_menu();
-	init_graph_gen();
+
 
 
 	auto background = pdraw::init_background();
@@ -37,11 +34,11 @@ int main ()
 		BeginDrawing();
 		ClearBackground(BLACK);
 		
-		update_char();
-		background->draw();
+		// update_char();
+		//background->draw();
 
 		if(c_pg == "menu")
-			pdraw::draw_title("VIATA LUI ADELIN");
+			draw_menu();
 
 		page[c_pg]->manage_drawing();
 		page[c_pg]->manage_mouse();

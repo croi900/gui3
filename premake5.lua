@@ -1,7 +1,7 @@
-workspace "gui3"
+workspace "fractalheart"
     configurations { "Debug", "Release" }
 
-project "gui3"
+project "fractalheart"
     location "build"
     kind "ConsoleApp"
     language "C++"
